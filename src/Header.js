@@ -69,6 +69,10 @@ function Header(calendar, options) {
 						groupChildren = groupChildren.add($('<h2>&nbsp;</h2>')); // we always want it to take up height
 						isOnlyButtons = false;
 					}
+					else if($.isFunction(options.customButtons[buttonName])){
+						var element = $(options.customButtons[buttonName](options));
+						groupChildren = groupChildren.add(element);
+					}
 					else {
 						if (calendar[buttonName]) { // a calendar method
 							buttonClick = function() {
