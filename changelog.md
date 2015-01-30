@@ -1,3 +1,10 @@
+v??
+-------------------
+
+- added height: 'parent' option to the calendar where the calendar takes the parent container's height (TODO: update docs)
+- added list view (listMonth) calendar type (TODO: update docs)
+- added styles for mobile devices
+
 
 v2.2.6 (2015-01-11)
 -------------------

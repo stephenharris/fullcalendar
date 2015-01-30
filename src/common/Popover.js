@@ -72,7 +72,7 @@ var Popover = Class.extend({
 		});
 
 		if (options.autoHide) {
-			$(document).on('mousedown', this.documentMousedownProxy = $.proxy(this, 'documentMousedown'));
+			$(document).on(getMouseDownEvent(), this.documentMousedownProxy = $.proxy(this, 'documentMousedown'));
 		}
 	},
 
@@ -82,6 +82,7 @@ var Popover = Class.extend({
 		// only hide the popover if the click happened outside the popover
 		if (this.el && !$(ev.target).closest(this.el).length) {
 			this.hide();
+			ev.stopPropagation();
 		}
 	},
 
@@ -95,7 +96,7 @@ var Popover = Class.extend({
 			this.el = null;
 		}
 
-		$(document).off('mousedown', this.documentMousedownProxy);
+		$(document).off(getMouseDownEvent(), this.documentMousedownProxy);
 	},
 
 
