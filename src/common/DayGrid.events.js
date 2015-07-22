@@ -106,10 +106,15 @@ DayGrid.mixin({
 			timeHtml = '<span class="fc-time">' + htmlEscape(this.getEventTimeText(event)) + '</span>';
 		}
 
-		titleHtml =
-			'<span class="fc-title">' +
-				(htmlEscape(event.title || '') || '&nbsp;') + // we always want one line of height
-			'</span>';
+		if (event.customTitleHtml) {
+			titleHtml = event.customTitleHtml;
+		}
+		else {
+			titleHtml =
+				'<span class="fc-title">' +
+					(htmlEscape(event.title || '') || '&nbsp;') + // we always want one line of height
+				'</span>';
+		}
 		
 		return '<a class="' + classes.join(' ') + '"' +
 				(event.url ?
