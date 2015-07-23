@@ -298,7 +298,9 @@ var Grid = fc.Grid = RowRenderer.extend({
 			listenStop: function(ev) {
 				if (dayClickCell) {
 					ev.preventDefault(); //fixes double click on Android
-					view.trigger('dayClick', _this.getCellDayEl(dayClickCell), dayClickCell.start, ev);
+					if (!dragListener.isScrolling) {
+						view.trigger('dayClick', _this.getCellDayEl(dayClickCell), dayClickCell.start, ev);
+					}
 				}
 				if (selectionRange) {
 					// the selection will already have been rendered. just report it

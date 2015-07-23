@@ -10,6 +10,7 @@ var DragListener = Class.extend({
 
 	isListening: false,
 	isDragging: false,
+	isScrolling: false,
 
 	// the cell the mouse was over when listening started
 	origCell: null,
@@ -67,7 +68,7 @@ var DragListener = Class.extend({
 		var cell;
 
 		if (!this.isListening) {
-
+			this.isScrolling = false;
 			// grab scroll container and attach handler
 			if (ev && this.options.scroll) {
 				scrollParent = getScrollParent($(ev.target));
@@ -133,6 +134,7 @@ var DragListener = Class.extend({
 	// This function is called internally from this class, but can also be called explicitly from outside
 	startDrag: function(ev) {
 		var cell;
+		this.isScrolling = true;
 
 		if (!this.isListening) { // startDrag must have manually initiated
 			this.startListening();
@@ -397,6 +399,7 @@ var DragListener = Class.extend({
 
 	// Get called when the scrollEl is scrolled (NOTE: this is delayed via debounce)
 	scrollHandler: function() {
+		this.isScrolling = true;
 		// recompute all coordinates, but *only* if this is *not* part of our scrolling animation
 		if (!this.scrollIntervalId) {
 			this.computeCoords();
