@@ -134,7 +134,6 @@ var DragListener = Class.extend({
 	// This function is called internally from this class, but can also be called explicitly from outside
 	startDrag: function(ev) {
 		var cell;
-		this.isScrolling = true;
 
 		if (!this.isListening) { // startDrag must have manually initiated
 			this.startListening();
@@ -157,7 +156,7 @@ var DragListener = Class.extend({
 	// Called while the mouse is being moved and when we know a legitimate drag is taking place
 	drag: function(ev) {
 		var cell;
-
+		this.isScrolling = true;
 		if (this.isDragging) {
 			cell = this.getCell(ev);
 
