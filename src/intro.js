@@ -2,6 +2,8 @@
  * <%= meta.title %> v<%= meta.version %>
  * Docs & License: <%= meta.homepage %>
  * (c) <%= meta.copyright %>
+ * Edits made by Stephen Harris for Event Organiser
+ * http://wp-event-organiser.com/
  */
 
 (function(factory) {
