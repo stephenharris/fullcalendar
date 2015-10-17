@@ -2,7 +2,7 @@
 /* A list view with simple day cells
 ----------------------------------------------------------------------------------------------------------------------*/
 
-fcViews.listMonth = {
+fcViews.listDay = {
 	type: 'list',
-	duration: { months: 1 }
+	duration: { days: 1 }
 };
