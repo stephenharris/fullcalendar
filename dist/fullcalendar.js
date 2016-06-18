@@ -2,6 +2,8 @@
  * FullCalendar v2.2.7
  * Docs & License: http://arshaw.com/fullcalendar/
  * (c) 2013 Adam Shaw
+ * Edits made by Stephen Harris for Event Organiser
+ * http://wp-event-organiser.com/
  */
 
 (function(factory) {
@@ -4753,6 +4755,8 @@ DayGrid.mixin({
 		if (!event.allDay && seg.isStart) {
 			timeHtml = '<span class="fc-time">' + htmlEscape(this.getEventTimeText(event)) + '</span>';
 		}
+		
+		var dateSR ='<span class="eo-fullcalendar-screen-reader-text screen-reader-text"> ' + htmlEscape(this.getEventTimeText(event, "dddd, MMMM Do YYYY")) + ' </span>';
 
 		titleHtml =
 			'<span class="fc-title">' +
@@ -4771,8 +4775,8 @@ DayGrid.mixin({
 			'>' +
 				'<div class="fc-content">' +
 					(this.isRTL ?
-						titleHtml + ' ' + timeHtml : // put a natural space in between
-						timeHtml + ' ' + titleHtml   //
+						titleHtml + ' ' + timeHtml + dateSR: // put a natural space in between
+						dateSR + timeHtml + ' ' + titleHtml  //
 						) +
 				'</div>' +
 				(isResizable ?
@@ -7845,7 +7849,7 @@ function Header(calendar, options) {
 					var button;
 
 					if (buttonName == 'title') {
-						groupChildren = groupChildren.add($('<h2>&nbsp;</h2>')); // we always want it to take up height
+						groupChildren = groupChildren.add($('<h2 aria-live="polite">&nbsp;</h2>')); // we always want it to take up height
 						isOnlyButtons = false;
 					}
 					else if($.isFunction(options.customButtons[buttonName])){
@@ -10225,7 +10229,27 @@ ListView.duration = { months: 1 };
 
 fcViews.listMonth = {
 	type: 'list',
-	duration: { weeks: 4 }
+	duration: { months: 1 }
+};
+
+;;
+
+/* A list view with simple day cells
+----------------------------------------------------------------------------------------------------------------------*/
+
+fcViews.listWeek = {
+	type: 'list',
+	duration: { weeks: 1 }
+};
+
+;;
+
+/* A list view with simple day cells
+----------------------------------------------------------------------------------------------------------------------*/
+
+fcViews.listDay = {
+	type: 'list',
+	duration: { days: 1 }
 };
 
 ;;
